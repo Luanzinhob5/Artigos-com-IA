@@ -1,38 +1,42 @@
-task_ler_pdf:
+task_pesquisar:
   description: >
-    Extraia o texto bruto do arquivo PDF fornecido, preservando o máximo de conteúdo original possível para análise científica.
+    Realize uma pesquisa profunda sobre o tema '{topic}' em fontes confiáveis, como artigos peer-reviewed,
+    bases como arXiv, PubMed, SciELO, Semantic Scholar ou CrossRef. Liste os dados coletados com suas referências.
+
+    Pergunta:
+    {topic}
 
   expected_output: >
-    Texto bruto extraído do PDF, pronto para processamento posterior.
+    Lista detalhada de dados e suas respectivas fontes confiáveis.
 
-  agent: agente_leitor_pdf
+  agent: agente_pesquisador
 
 task_analizar_texto:
   description: >
-    Analise o texto extraído e identifique as informações científicas mais relevantes, como hipóteses, métodos, resultados e conclusões.
+    Analise criticamente os dados fornecidos. Elimine duplicidades e dados questionáveis.
+    Destaque os pontos-chave mais relevantes que devem ser considerados na redação de um artigo científico sobre '{topic}'.
 
   expected_output: >
-    Texto contendo as partes mais importantes do artigo científico.
-    Tópicos detalhados sobre hipóteses, métodos, resultados e conclusões presentes no texto.
+    Resumo analítico das principais informações, com justificativas e contexto.
 
   agent: agente_analista
 
 task_resumir_texto:
   description: >
-    Resuma o texto científico recebido, mantendo a precisão das informações e destacando os principais achados e contribuições do artigo.
+    Com base na análise feita, elabore um resumo técnico e preciso das descobertas. 
+    Organize as ideias com clareza e linguagem científica acessível. Mantenha fidelidade às fontes.
 
   expected_output: >
-    Texto resumido, claro e objetivo, com os principais pontos do artigo científico.
-    Conteúdo dos tópicos resumidos, mantendo rigor acadêmico.
+    Resumo técnico claro e estruturado para uso em artigo científico.
 
   agent: agente_resumo
 
 task_formatar_artigo:
   description: >
-    Formate o resumo recebido no estilo de um artigo científico, incluindo título, resumo, introdução, metodologia, resultados, discussão e conclusão.
+    Converta o resumo técnico em um artigo científico completo, estruturado com: Introdução, Metodologia, 
+    Resultados, Discussão e Conclusão. Utilize estilo de escrita acadêmico, respeitando normas da ABNT ou APA.
 
   expected_output: >
-    Arquivo PDF estruturado como artigo científico, com seções bem definidas.
-    Documento pronto para submissão em revistas científicas, seguindo padrões acadêmicos de formatação.
+    Texto final do artigo científico formatado segundo padrões editoriais brasileiros, em português.
 
   agent: agente_artigo

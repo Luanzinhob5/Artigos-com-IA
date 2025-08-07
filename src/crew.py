@@ -1,6 +1,5 @@
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
-from tools.extrator_de_pdf import ExtratorDeTexto
 
 
 #LLM do GPT
@@ -15,13 +14,13 @@ class CriadorBlog:
     tasks_config = "config/tasks.yaml"
 
 
-    #Agente Leitor de pdf
+    #Agente Pesquisador
     @agent
-    def agente_leitor_pdf(self) -> Agent:
+    def agente_pesquisador(self) -> Agent:
         return Agent(
-            config=self.agents_config["agente_leitor_pdf"],
-            tools=[ExtratorDeTexto()],
+            config=self.agents_config["agente_pesquisador"],
             verbose=True,
+            llm=llm,
             
         )
     
@@ -55,9 +54,9 @@ class CriadorBlog:
 
     #Task de ler os pdfs
     @task
-    def task_ler_pdf(self) -> Task:
+    def task_pesquisar(self) -> Task:
         return Task(
-            config=self.tasks_config["task_ler_pdf"],
+            config=self.tasks_config["task_pesquisar"],
         )
     
     #Task de analizar o texto colhido
@@ -65,7 +64,7 @@ class CriadorBlog:
     def task_analizar_texto(self) -> Task:
         return Task(
             config=self.tasks_config["task_analizar_texto"],
-            context=[self.task_ler_pdf()],
+            context=[self.task_pesquisar()],
         )
     
     #Task de resumir o texto analizado
@@ -82,7 +81,6 @@ class CriadorBlog:
         return Task(
             config=self.tasks_config["task_formatar_artigo"],
             context=[self.task_resumir_texto()],
-            output_file="artigo.pdf"
         )
     
 
@@ -95,3 +93,7 @@ class CriadorBlog:
             verbose=True,
             process=Process.sequential,
         )
+    
+    def gerar_artigo(self, topic):
+        resultado = self.crew().kickoff(inputs={"topic": topic})
+        return resultado

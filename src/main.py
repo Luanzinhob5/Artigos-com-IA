@@ -6,5 +6,8 @@ import os
 load_dotenv()
 os.environ["OPENAI_API_KEY"]
 
+criador_blog = CriadorBlog()
 
-CriadorBlog().crew().kickoff()
+def run_criador_artigo(pergunta):
+    artigo = criador_blog.gerar_artigo(pergunta)
+    return artigo

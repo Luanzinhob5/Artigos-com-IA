@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>IA Criadora de Artigos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>IA Criadora de Artigos</h1>
+    </header>
+    <main>
+        <form method="post">
+            <label for="pergunta">Digite o tema do artigo:</label>
+            <input type="text" id="pergunta" name="pergunta" required placeholder="Ex: Inteligência Artificial na Saúde">
+            <button type="submit">Gerar Artigo</button>
+        </form>
+        {% if artigo %}
+        <div class="response-box">
+            <h2>Artigo Gerado:</h2>
+            <p>{{ artigo }}</p>
+        </div>
+        {% endif %}
+    </main>
+    <footer>
+        &copy; 2025 IA Criadora de Artigos
+    </footer>
+</body>
+</html>
