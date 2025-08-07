@@ -1,0 +1,38 @@
+task_ler_pdf:
+  description: >
+    Extraia o texto bruto do arquivo PDF fornecido, preservando o máximo de conteúdo original possível para análise científica.
+
+  expected_output: >
+    Texto bruto extraído do PDF, pronto para processamento posterior.
+
+  agent: agente_leitor_pdf
+
+task_analizar_texto:
+  description: >
+    Analise o texto extraído e identifique as informações científicas mais relevantes, como hipóteses, métodos, resultados e conclusões.
+
+  expected_output: >
+    Texto contendo as partes mais importantes do artigo científico.
+    Tópicos detalhados sobre hipóteses, métodos, resultados e conclusões presentes no texto.
+
+  agent: agente_analista
+
+task_resumir_texto:
+  description: >
+    Resuma o texto científico recebido, mantendo a precisão das informações e destacando os principais achados e contribuições do artigo.
+
+  expected_output: >
+    Texto resumido, claro e objetivo, com os principais pontos do artigo científico.
+    Conteúdo dos tópicos resumidos, mantendo rigor acadêmico.
+
+  agent: agente_resumo
+
+task_formatar_artigo:
+  description: >
+    Formate o resumo recebido no estilo de um artigo científico, incluindo título, resumo, introdução, metodologia, resultados, discussão e conclusão.
+
+  expected_output: >
+    Arquivo PDF estruturado como artigo científico, com seções bem definidas.
+    Documento pronto para submissão em revistas científicas, seguindo padrões acadêmicos de formatação.
+
+  agent: agente_artigo
